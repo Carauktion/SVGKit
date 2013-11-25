@@ -79,7 +79,7 @@ void exportPathCommands(void *exportPathCommandsConextPtr, const CGPathElement *
         [propertyRegistry setObject:CALayerProperties
                              forKey:NSStringFromClass([CALayer class])];
         
-        NSArray* CAShapeLayerProperties = [NSArray arrayWithObjects:@"path", @"fillColor", @"fillRule", @"strokeColor", @"lineWidth", @"miterLimit", @"lineCap", @"lineJoin", @"lineDashPhase", @"lineDashPattern", nil];
+        NSArray* CAShapeLayerProperties = [NSArray arrayWithObjects:@"path", @"fillColor", @"data-trigger",@"fillRule", @"strokeColor", @"lineWidth", @"miterLimit", @"lineCap", @"lineJoin", @"lineDashPhase", @"lineDashPattern", nil];
         [propertyRegistry setObject:CAShapeLayerProperties
                              forKey:NSStringFromClass([CAShapeLayer class])];
     }

@@ -2,7 +2,7 @@
 
 @implementation SVGKSourceLocalFile
 
-+ (SVGKSource*)sourceFromFilename:(NSString*)p {
++ (SVGKSourceLocalFile*)sourceFromFilename:(NSString*)p {
 	NSInputStream* stream = [NSInputStream inputStreamWithFileAtPath:p];
 	[stream open];
 	
@@ -10,6 +10,13 @@
 	s.filePath = p;
 	
 	return s;
+}
+
+- (SVGKSource *)sourceFromRelativePath:(NSString *)relative {
+    NSString *absolute = [[self.filePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:relative];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:absolute])
+        return [SVGKSourceLocalFile sourceFromFilename:absolute];
+    return nil;
 }
 
 - (void)dealloc {

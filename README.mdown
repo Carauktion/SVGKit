@@ -2,9 +2,15 @@
 
 SVGKit is a Cocoa framework for rendering SVG files natively: it's fast and powerful.
 
-Versions:
-  - v1.0 - 2013, approximately 90% coverage of the SVG spec. Stable and quite fast - https://github.com/SVGKit/SVGKit/tree/v1.0
-  - v1.1.0 - Current branch in development; all pull-requests should be issued against this branch - https://github.com/SVGKit/SVGKit/tree/1.1.0
+## Versions:
+  - v1.x = current "in development" branch with latest changes, fixes, features
+    - NB: this is now automatically selected in GitHub as the "default" branch when you visit SVGKit's project page
+  - v1.1.0 = most recent "stable" release; works with iOS7, has fixes + adds basic (slow) Text support
+  - v1.0 = Major refactor/re-write at start of 2013, approximately 90% coverage of the SVG spec. Stable and quite fast - https://github.com/SVGKit/SVGKit/tree/v1.0
+
+## Forks:
+
+  - [MaddTheSane](https://github.com/MaddTheSane/SVGKit/tree/master) : this fork adds a complete working build of SVGKit for Mac OS X, and a (very) large number of tweaks (over 10k lines of code). We need help integrating + checking these changes against master / 1.x - please get in touch (create an issue, or email adam.m.s.martin at gmail) if you can help.
 
 ## Xcode Projects Included
 
@@ -17,6 +23,7 @@ Because so much has changed, Adam wrote a series of blog posts to explain how to
      - additiona: How to scale an SVG image on screen: http://t-machine.org/index.php/2013/04/14/svgkit-scaling-svg-images/
   - CONTRIBUTING to the project, CORE ARCHITECTURE: http://t-machine.org/index.php/2012/12/31/svgkit-2013-development/
  
+  - (November 2013): New (experimental) feature - writing SVG's out to disk, preserving any changes you made programmatically: http://t-machine.org/index.php/2013/11/17/svgkit-programmatic-editing-of-svg-files-on-ios/
 
 
 ### Ultra-quick 'getting started' (iPhone/iPad)
@@ -39,6 +46,16 @@ Key methods / properties you might find useful:
   1. SVGKImage - all the magic happens here
   1. SVGKImage.DOMTree - a complete DOM tree of the "parsed" SVG/XML document, with ALL TAGS (even if unsupported by current SVGKit - they will be parsed anyway!)
   1. SVGKImage.CALayerTree - a complete, renderable, tree of Apple CALayer objects (only contains layers for features currently supported - if you find something missing, please submit a fix!)
+
+### I get a crash with "unrecognized selector" ?
+
+If you get this error:
+
+"+[NSCharacterSet SVGWhitespaceCharacterSet]: unrecognized selector sent to class "
+
+... you're probably building the Static Library, but forgot to do Step 7 below:
+
+"Edit your build settings and add "Other Linker Flags" = "-ObjC""
 
 
 ## Advanced Features (this branch/fork only!) (iPhone/iPad)
@@ -87,8 +104,9 @@ You must add the following frameworks for SVGKit to compile - unless you are emb
 
   - CoreText
   - CoreImage
+  - libxml2.dylib
   - QuartzCore
   - CoreGraphics
   - UIKit
 
-(only the first two are unusual - the rest you probably have by default in your iOS project template)
+(only the first three are unusual - the rest you probably have by default in your iOS project template)
