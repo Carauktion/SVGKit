@@ -89,8 +89,10 @@ CGImageRef SVGImageCGImage(SVGImageRef img)
 #if OLD_CODE
 	__block CALayer *layer = [[CALayer layer] retain];
 
-	layer.name = self.identifier;
-	[layer setValue:self.identifier forKey:kSVGElementIdentifier];
+    layer.name = self.datatrigger;
+	[layer setValue:self.datatrigger forKey:kSVGElementIdentifier];
+    [layer setValue:nonStylableElement.dataTrigger forKey:@"dataTrigger"];
+
 	
 	CGRect frame = CGRectMake(_x, _y, _width, _height);
 	frame = CGRectApplyAffineTransform(frame, [SVGHelperUtilities transformAbsoluteIncludingViewportForTransformableOrViewportEstablishingElement:self]);

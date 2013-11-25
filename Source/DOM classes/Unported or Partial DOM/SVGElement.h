@@ -20,6 +20,7 @@
 @interface SVGElement : Element <SVGStylable>
 
 @property (nonatomic, readwrite, retain) NSString *identifier; // 'id' is reserved in Obj-C, so we have to break SVG Spec here, slightly
+@property (nonatomic, readwrite, retain) NSString *dataTrigger;
 @property (nonatomic, retain) NSString* xmlbase;
 /*!
  

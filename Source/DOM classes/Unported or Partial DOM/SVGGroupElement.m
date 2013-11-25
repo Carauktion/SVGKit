@@ -40,10 +40,11 @@
 	
 	CALayer* _layer = [[CALayerWithChildHitTest layer] retain];
 		
-		_layer.name = self.identifier;
-		[_layer setValue:self.identifier forKey:kSVGElementIdentifier];
-		_layer.opacity = _opacity;
-		
+    _layer.name = self.identifier;
+    [_layer setValue:self.identifier forKey:kSVGElementIdentifier];
+    [_layer setValue:self.dataTrigger forKey:@"dataTrigger"];
+    _layer.opacity = _opacity;
+    
 	
 	return _layer;
 }

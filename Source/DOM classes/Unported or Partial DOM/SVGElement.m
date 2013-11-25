@@ -201,6 +201,9 @@
 	if( [[self getAttribute:@"id"] length] > 0 )
 		self.identifier = [self getAttribute:@"id"];
 	
+    if( [[self getAttribute:@"data-trigger"] length] > 0 )
+		self.dataTrigger = [self getAttribute:@"data-trigger"];
+    
 	/** CSS styles and classes */
 	if ( [self getAttributeNode:@"style"] )
 	{

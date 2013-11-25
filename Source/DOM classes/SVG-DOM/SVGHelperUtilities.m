@@ -284,7 +284,8 @@
 {
 	layer.name = nonStylableElement.identifier;
 	[layer setValue:nonStylableElement.identifier forKey:kSVGElementIdentifier];
-	
+    [layer setValue:nonStylableElement.dataTrigger forKey:@"dataTrigger"];
+
 #if FORCE_RASTERIZE_LAYERS
 	if ([layer respondsToSelector:@selector(setShouldRasterize:)]) {
 		[layer performSelector:@selector(setShouldRasterize:)
@@ -308,7 +309,10 @@
 +(CALayer *) newCALayerForPathBasedSVGElement:(SVGElement<SVGTransformable>*) svgElement withPath:(CGPathRef) pathRelative
 {
 	CAShapeLayer* _shapeLayer = [[CAShapeLayerWithHitTest layer] retain];
-	
+
+    NSString * dataTrigger = [svgElement cascadedValueForStylableProperty:@"data-trigger"];
+    _shapeLayer.name = dataTrigger;
+
 	[self configureCALayer:_shapeLayer usingElement:svgElement];
 	
 	/** transform our LOCAL path into ABSOLUTE space */

@@ -14,5 +14,6 @@
 @property (nonatomic, readonly) CGFloat height;
 
 @property (nonatomic, retain, readonly) NSString *href;
+@property (nonatomic, retain, readonly) NSString *datatrigger;
 
 @end
