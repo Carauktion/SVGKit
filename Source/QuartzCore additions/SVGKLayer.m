@@ -58,6 +58,12 @@
 - (void)dealloc
 {
 	//FIXME: Apple crashes on this line, even though BY DEFINITION Apple should not be crashing: [self removeObserver:self forKeyPath:@"showBorder"];
+    
+    @try{
+        [self removeObserver:self forKeyPath:@"showBorder"];
+    }@catch(id anException){
+        //do nothing, obviously it wasn't attached because an exception was thrown  
+    }
 	
 	self.SVGImage = nil;
 	

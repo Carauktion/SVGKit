@@ -261,6 +261,12 @@ static NSMutableDictionary* globalSVGKImageCache;
 
 - (void)dealloc
 {
+    @try{
+        [self removeObserver:self forKeyPath:@"DomTree.viewport" context:nil];
+    }@catch(id anException){
+        //do nothing, obviously it wasn't attached because an exception was thrown
+    }
+    
 #ifdef ENABLE_GLOBAL_IMAGE_CACHE_FOR_SVGKIMAGE_IMAGE_NAMED
     if( self->cameFromGlobalCache )
     {
